@@ -1,3 +1,7 @@
+* {
+    background-color: #779DCF;
+}
+
 .login__container {
     display: flex;
     justify-content: center;
@@ -12,6 +16,8 @@ input {
     box-sizing: border-box;
     border-radius: 8px;
     margin-top: 15px;
+    background-color: white;
+    border: 0;
 }
 
 .login__heading {
@@ -36,7 +42,9 @@ button {
 .login__button {
     font-size: 20px;
     border-radius: 5px;
-    background-color: teal;
+    background-color: white;
+    border: 0;
+    box-shadow: #555555 5px 5px;
 }
 
 button:hover {

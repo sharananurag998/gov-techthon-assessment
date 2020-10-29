@@ -4,9 +4,10 @@
 
 .phases__container {
     display: flex;
-    margin-left: 36%;
     flex-direction: column;
     margin-top: 100px;
+    align-items: center;
+    justify-content: center;
 }
 
 h2 {
@@ -14,7 +15,6 @@ h2 {
 }
 
 p {
-    margin-left: 11%;
     font-size: 24px;
     font-weight: 400;
 }

@@ -1,11 +1,10 @@
-* {
-    background-color: #779DCF;
+.container {
+    background-color: #fff;
 }
 
 .login__container {
     display: flex;
     justify-content: center;
-    margin-top: 6%;
 }
 
 input {

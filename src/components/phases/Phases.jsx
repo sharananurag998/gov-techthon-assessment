@@ -1,11 +1,9 @@
 import React from 'react'
 import './Phases.css';
-import Logo from '../logo/Logo';
 
 function Phases() {
     return (
         <div className="body__container">
-
             <div className="jury__detail">
                 <h3>
                     Name: Test

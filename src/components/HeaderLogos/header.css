@@ -1,0 +1,10 @@
+.HeaderLogos {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    background-color: #fff;
+    padding: 20px;
+}
+
+.HeaderLogos img {
+    width: 250px;
+}

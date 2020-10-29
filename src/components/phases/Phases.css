@@ -1,13 +1,14 @@
-* {
-    background-color: #779DCF;
-}
-
 .phases__container {
     display: flex;
-    flex-direction: column;
-    margin-top: 100px;
-    align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    margin-top: 80px;
+    padding: 10px;
+    background-color: white;
+}
+
+.phases__heading {
+    margin-top: 50px;
+    margin-left: 2%;
 }
 
 h2 {
@@ -15,21 +16,26 @@ h2 {
 }
 
 p {
-    font-size: 24px;
+    margin-left: 2%;
+    margin-right: 2%;
+    font-size: 26px;
     font-weight: 400;
+    background-color: white;
 }
 
-button {
-    margin-left: 40px;
-    width: 100px;
-    padding: 8px;
+a {
+    color: black;
+    text-decoration: underline;
     background-color: white;
-    font-size: 16px;
-    border-radius: 5px;
-    border: 0;
-    box-shadow: #555555 5px 5px;
 }
 
 button:hover {
     cursor: pointer;
+}
+
+.jury__detail {
+    margin-top: 100px;
+    margin-left: 2%;
+    font-size: 18px;
+    padding: 10px;
 }

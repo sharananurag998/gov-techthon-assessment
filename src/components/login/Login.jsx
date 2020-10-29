@@ -47,13 +47,13 @@ function Login() {
     return (
         <div className="container">
             <div className="login__header">
-                <h1>Gov-TechThon</h1>
+                <h1>Gov-TechThon 2020</h1>
             </div>
             <div className="login__container">
                 <div className="login">
                     <h1 className="login__heading">Jury Login</h1>
                     <form >
-                        <label htmlFor="mobNumber">Mobile Number (Precede with country code(+91))</label>
+                        <label htmlFor="mobNumber">Mobile Number (Precede with (+91))</label>
                         <input type="tel" name="mobNumber" id="mobNumber" placeholder="Enter your Mobile Number" onChange={(e)=>{setMobile(e.target.value)}} required/>
                         {OTPsent&&<input type="number" name="otp" id="otp" placeholder="Enter OTP" onChange={(e)=>{setOtp(e.target.value)}} required/>}
                         <br/>

@@ -7,21 +7,6 @@ import assessmentsJSON from '../../constants/assessment.json'
 
 const { Title, Paragraph, Text } = Typography
 
-const assessmentDummy = {
-	category: 'Requirement assessment',
-	evaluation: [
-		{
-			id: 1,
-			title: 'Is the problem statement properly understood ?',
-			value: 0,
-		},
-		{ id: 2, title: 'Are all fuctionality understood ?', value: 0 },
-		{ id: 3, title: 'Has the team come up with innovative features?', value: 0 },
-		{ id: 4, title: 'Are the features / functionality feasible / practicle ?', value: 0 },
-		{ id: 6, title: 'Others', value: 0 },
-	],
-}
-
 const teamDummy = {
 	teamName: 'HACKERMANS',
 	teamId: 1,
@@ -61,7 +46,22 @@ export default function TeamAssessment() {
 		// console.log('[DEBUG] teamId: ', teamId)
 		// console.log('[DEBUG] phase: ', phase)
 		// console.log('[DEBUG] assessment: ', assessment)
+		// console.log('[DEBUG] evals: ', evals)
 	}, [])
+
+	const getScores = () => {
+		let score = 0.0
+
+		assessment.evaluation.forEach(evalObj => {
+			if (!evals[evalObj.id]) {
+				alert('Enter your rating for every input')
+			}
+
+			score += parseFloat(evalObj.weight) * evals[evalObj.id]
+		})
+
+		console.log(score)
+	}
 
 	return (
 		<div className='assessmentWrapper'>
@@ -70,7 +70,7 @@ export default function TeamAssessment() {
 					<Typography>
 						<Title>
 							<div>
-								Assessment - <Text keyboard>{assessment.title}</Text>
+								<Text keyboard>{assessment.title}</Text>
 							</div>
 						</Title>
 					</Typography>
@@ -93,7 +93,7 @@ export default function TeamAssessment() {
 								<Typography key={index}>
 									<Paragraph>
 										<Space>
-											<Text strong>member {member.id}:</Text>{' '}
+											<Text strong>member {member.id}:</Text>
 											<Text>name: </Text>
 											<Text code>{member.name} </Text> <Text>email: </Text>
 											<Text code>{member.email}</Text>
@@ -120,10 +120,10 @@ export default function TeamAssessment() {
 							</Typography>
 							<div style={{ margin: 20, marginLeft: 50 }}>
 								<InputNumber
-									defaultValue={param.value}
 									min={0}
 									max={10}
 									value={evals[param.id]}
+									suffix='.out of 10'
 									onChange={value =>
 										setEvals(evals => ({ ...evals, [param.id]: value }))
 									}
@@ -133,7 +133,7 @@ export default function TeamAssessment() {
 						</div>
 					))}
 					<div>
-						<Button onClick={e => console.log('team id: ', teamId)} type='primary'>
+						<Button onClick={getScores} type='primary'>
 							Submit
 						</Button>
 					</div>

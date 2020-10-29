@@ -40,9 +40,11 @@ export default function InputTeam({ jury }) {
 							placeItems: 'center',
 						}}>
 						<Paragraph style={{ fontSize: 25 }}>
-							Enter Team ID to start evaluating on {assessmentsJSON[phase].title}
+							Enter Team ID to start evaluating on
+							<Text strong>{assessmentsJSON[phase].title}</Text>
 						</Paragraph>
 						<Space>
+							<Text strong>Team Id: </Text>
 							<Input value={teamId} onChange={e => setTeamId(e.target.value)} />
 							<Button onClick={routeToTeamAssessment}>Evaluate</Button>
 						</Space>

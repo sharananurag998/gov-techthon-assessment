@@ -1,44 +1,45 @@
 import React,{useEffect, useState} from 'react'
 import './Phases.css';
 import {db, firebase} from '../firebase';
+import { Link } from 'react-router-dom'
 
 function Phases({user}) {
     const [name, setName]= useState(null);
     const [email, setEmail] = useState(null);
     const [phone, setPhone] = useState(null)
     const [details, setDetails] = useState(null);
+
     useEffect(async() => {
-        const usr = firebase.auth().currentUser;
-        const snapshot = await db.collection("jury").get();
-        setDetails(snapshot.docs.reduce(function (acc, doc, i) {
-              acc[doc.id] = doc.data();
-              return acc;
-            }, {}));
-        if(details){
-            Object.keys(details).map(function(key, index) {
-            if(details[key].phone == usr.phoneNumber)
-            {
-                setName(details[key].name);
-                setPhone(details[key].phone);
-                setEmail(details[key].email);
-                console.log("User found in db");
-            }else{
-                console.log("User not in db");
-            }
-        });
-        }
+        // const usr = firebase.auth().currentUser;
+        // const snapshot = await db.collection("jury").get();
+        // setDetails(snapshot.docs.reduce(function (acc, doc, i) {
+        //       acc[doc.id] = doc.data();
+        //       return acc;
+        //     }, {}));
+        // if(details){
+        //     Object.keys(details).map(function(key, index) {
+        //     if(details[key].phone == usr.phoneNumber)
+        //     {
+        //         setName(details[key].name);
+        //         setPhone(details[key].phone);
+        //         setEmail(details[key].email);
+        //         console.log("User found in db");
+        //     }else{
+        //         console.log("User not in db");
+        //     }
+        // });
+        // }
 
     }, [details])
-    useEffect(() => {
-    }, [])
+
     return (
         <div className="body__container">
             <div className="jury__detail">
                 <h3>
                 <p>Name: {name?name:"Jury Not in DB"}</p>
-            <p>Email: {email}</p>
-            <p>Phone: {phone}</p>
-            
+                <p>Email: {email}</p>
+                <p>Phone: {phone}</p>
+                
                 </h3>
                 <h3>
                     Group: AI-Crop Recommendation
@@ -51,23 +52,23 @@ function Phases({user}) {
 
             <div className="phases__container">
                 <p>
-                    1. <a href="http://google.com" target="_self">Requirement Assessment</a>
+                    1. <Link to="/phases/Requirement" target="_self">Requirement Assessment</Link>
                 </p>
 
                 <p>
-                    2. <a href="http://google.com" target="_self">Architect-Design Assessment</a>
+                    2. <Link to="/phases/Architect-Design" target="_self">Architect-Design Assessment</Link>
                 </p>
 
                 <p>
-                    3. <a href="http://google.com" target="_self">Coding, Testing Assessment</a>
+                    3. <Link to="/phases/Coding-Testing" target="_self">Coding, Testing Assessment</Link>
                 </p>
 
                 <p>
-                    4. <a href="http://google.com" target="_self">Final Assessment</a>
+                    4. <Link to="/phases/Final" target="_self">Final Assessment</Link>
                 </p>
 
                 <p>
-                    5. <a href="http://google.com" target="_self">Grand Assessment</a>
+                    5. <Link to="/phases/Grand" target="_self">Grand Assessment</Link>
                 </p>
 
             </div>

@@ -1,6 +1,7 @@
 import { InputNumber, Card, Space, Divider, Typography, Button } from 'antd'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import './teamAssessment.css'
 
 const { Title, Paragraph, Text } = Typography
 
@@ -47,83 +48,92 @@ const teamDummy = {
 }
 
 export default function TeamAssessment({ assessment = assessmentDummy, team = teamDummy }) {
-	const { teamId } = useParams()
+	const { phase, teamId } = useParams()
 
 	const [evals, setEvals] = useState({})
 
+	useEffect(() => {
+		// fetch team from db
+		console.log('[DEBUG] teamId: ', teamId)
+		console.log('[DEBUG] phase: ', phase)
+	}, [])
+
 	return (
-		<Card>
-			<div style={{ padding: 20, width: '100%' }}>
-				<Typography>
-					<Title>
-						<div>
-							Assessment - <Text keyboard>{assessment.category}</Text>
-						</div>
-					</Title>
-				</Typography>
-				<Divider />
-				<Typography>
-					<Title level={4}>
-						<div>
-							Team name: <Text keyboard>{team.teamName}</Text>
-						</div>
-					</Title>
-					<Title level={5}>
-						<div>
-							Team number: <Text code>{team.teamId}</Text>
-						</div>
-					</Title>
+		<div className='assessmentWrapper'>
+			<Card>
+				<div style={{ padding: 20, width: '100%' }}>
+					<Typography>
+						<Title>
+							<div>
+								Assessment - <Text keyboard>{assessment.category}</Text>
+							</div>
+						</Title>
+					</Typography>
 					<Divider />
-					<div>
-						<Title level={3}>Members</Title>
-						{team.members.map(member => (
+					<Typography>
+						<Title level={4}>
+							<div>
+								Team name: <Text keyboard>{team.teamName}</Text>
+							</div>
+						</Title>
+						<Title level={5}>
+							<div>
+								Team number: <Text code>{team.teamId}</Text>
+							</div>
+						</Title>
+						<Divider />
+						<div>
+							<Title level={3}>Members</Title>
+							{team.members.map((member, index) => (
+								<Typography key={index}>
+									<Paragraph>
+										<Space>
+											<Text strong>member {member.id}:</Text>{' '}
+											<Text>name: </Text>
+											<Text code>{member.name} </Text> <Text>email: </Text>
+											<Text code>{member.email}</Text>
+										</Space>
+									</Paragraph>
+								</Typography>
+							))}
+						</div>
+						<Divider />
+					</Typography>
+					{assessment.evaluation.map(param => (
+						<div
+							key={param.id}
+							style={{
+								display: 'grid',
+								gridTemplateColumns: '2fr 1fr',
+								alignItems: 'center',
+							}}>
 							<Typography>
-								<Paragraph>
-									<Space>
-										<Text strong>member {member.id}:</Text> <Text>name: </Text>
-										<Text code>{member.name} </Text> <Text>email: </Text>
-										<Text code>{member.email}</Text>
-									</Space>
-								</Paragraph>
+								<Title level={5}>
+									<Text style={{ marginRight: 5 }}>{param.id}.</Text>
+									{param.title}
+								</Title>
 							</Typography>
-						))}
-					</div>
-					<Divider />
-				</Typography>
-				{assessment.evaluation.map(param => (
-					<div
-						key={param.id}
-						style={{
-							display: 'grid',
-							gridTemplateColumns: '2fr 1fr',
-							alignItems: 'center',
-						}}>
-						<Typography>
-							<Title level={5}>
-								<Text style={{ marginRight: 5 }}>{param.id}.</Text>
-								{param.title}
-							</Title>
-						</Typography>
-						<div style={{ margin: 20, marginLeft: 50 }}>
-							<InputNumber
-								defaultValue={param.value}
-								min={0}
-								max={10}
-								value={evals[param.id]}
-								onChange={value =>
-									setEvals(evals => ({ ...evals, [param.id]: value }))
-								}
-							/>
-							<Text> out of 10</Text>
+							<div style={{ margin: 20, marginLeft: 50 }}>
+								<InputNumber
+									defaultValue={param.value}
+									min={0}
+									max={10}
+									value={evals[param.id]}
+									onChange={value =>
+										setEvals(evals => ({ ...evals, [param.id]: value }))
+									}
+								/>
+								<Text> out of 10</Text>
+							</div>
 						</div>
+					))}
+					<div>
+						<Button onClick={e => console.log('team id: ', teamId)} type='primary'>
+							Submit
+						</Button>
 					</div>
-				))}
-				<div>
-					<Button onClick={e => console.log('team id: ', teamId)} type='primary'>
-						Submit
-					</Button>
 				</div>
-			</div>
-		</Card>
+			</Card>
+		</div>
 	)
 }

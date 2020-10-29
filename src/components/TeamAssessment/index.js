@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import './teamAssessment.css'
 
+import assessmentsJSON from '../../constants/assessment.json'
+
 const { Title, Paragraph, Text } = Typography
 
 const assessmentDummy = {
@@ -47,15 +49,18 @@ const teamDummy = {
 	],
 }
 
-export default function TeamAssessment({ assessment = assessmentDummy, team = teamDummy }) {
+export default function TeamAssessment() {
 	const { phase, teamId } = useParams()
+	const assessment = assessmentsJSON[phase]
+	const evaluations = assessment.evaluation
 
 	const [evals, setEvals] = useState({})
 
 	useEffect(() => {
 		// fetch team from db
-		console.log('[DEBUG] teamId: ', teamId)
-		console.log('[DEBUG] phase: ', phase)
+		// console.log('[DEBUG] teamId: ', teamId)
+		// console.log('[DEBUG] phase: ', phase)
+		// console.log('[DEBUG] assessment: ', assessment)
 	}, [])
 
 	return (
@@ -65,7 +70,7 @@ export default function TeamAssessment({ assessment = assessmentDummy, team = te
 					<Typography>
 						<Title>
 							<div>
-								Assessment - <Text keyboard>{assessment.category}</Text>
+								Assessment - <Text keyboard>{assessment.title}</Text>
 							</div>
 						</Title>
 					</Typography>
@@ -73,18 +78,18 @@ export default function TeamAssessment({ assessment = assessmentDummy, team = te
 					<Typography>
 						<Title level={4}>
 							<div>
-								Team name: <Text keyboard>{team.teamName}</Text>
+								Team name: <Text keyboard>{teamDummy?.teamName}</Text>
 							</div>
 						</Title>
 						<Title level={5}>
 							<div>
-								Team number: <Text code>{team.teamId}</Text>
+								Team number: <Text code>{teamDummy?.teamId}</Text>
 							</div>
 						</Title>
 						<Divider />
 						<div>
 							<Title level={3}>Members</Title>
-							{team.members.map((member, index) => (
+							{teamDummy?.members.map((member, index) => (
 								<Typography key={index}>
 									<Paragraph>
 										<Space>
@@ -99,7 +104,7 @@ export default function TeamAssessment({ assessment = assessmentDummy, team = te
 						</div>
 						<Divider />
 					</Typography>
-					{assessment.evaluation.map(param => (
+					{evaluations.map(param => (
 						<div
 							key={param.id}
 							style={{

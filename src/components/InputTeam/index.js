@@ -2,6 +2,8 @@ import { Button, Input, Space, Typography } from 'antd'
 import React, { useState } from 'react'
 import { Redirect, useParams, useRouteMatch } from 'react-router-dom'
 
+import assessmentsJSON from '../../constants/assessment.json'
+
 const { Title, Paragraph, Text } = Typography
 
 export default function InputTeam({ jury }) {
@@ -20,29 +22,33 @@ export default function InputTeam({ jury }) {
 	return redirect ? (
 		<Redirect to={redirect} />
 	) : (
-		<>
-			<div
-				style={{
-					display: 'grid',
-					placeItems: 'center',
-					height: '100%',
-					marginTop: '-100px',
-				}}>
-				<div>
-					<Typography>
-						<Title style={{ fontSize: 75 }}>Welcome {jury.name}</Title>
-						<div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr' }}>
-							<Paragraph style={{ fontSize: 25 }}>
-								Enter Team ID to start evaluating on {phase}
-							</Paragraph>
-							<Space>
-								<Input value={teamId} onChange={e => setTeamId(e.target.value)} />
-								<Button onClick={routeToTeamAssessment}>Evaluate</Button>
-							</Space>
-						</div>
-					</Typography>
-				</div>
+		<div
+			style={{
+				display: 'grid',
+				placeItems: 'center',
+				height: '100%',
+				marginTop: '-100px',
+			}}>
+			<div>
+				<Typography>
+					<Title style={{ fontSize: 75 }}>Welcome {jury.name}</Title>
+					<div
+						style={{
+							display: 'grid',
+							gridTemplateColumns: '2fr 1fr',
+							columnGap: 15,
+							placeItems: 'center',
+						}}>
+						<Paragraph style={{ fontSize: 25 }}>
+							Enter Team ID to start evaluating on {assessmentsJSON[phase].title}
+						</Paragraph>
+						<Space>
+							<Input value={teamId} onChange={e => setTeamId(e.target.value)} />
+							<Button onClick={routeToTeamAssessment}>Evaluate</Button>
+						</Space>
+					</div>
+				</Typography>
 			</div>
-		</>
+		</div>
 	)
 }

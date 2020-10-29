@@ -56,11 +56,11 @@ function Phases({user}) {
                 </p>
 
                 <p>
-                    2. <Link to="/phases/Architect-Design" target="_self">Architect-Design Assessment</Link>
+                    2. <Link to="/phases/ArchitectDesign" target="_self">Architect-Design Assessment</Link>
                 </p>
 
                 <p>
-                    3. <Link to="/phases/Coding-Testing" target="_self">Coding, Testing Assessment</Link>
+                    3. <Link to="/phases/CodingTesting" target="_self">Coding, Testing Assessment</Link>
                 </p>
 
                 <p>

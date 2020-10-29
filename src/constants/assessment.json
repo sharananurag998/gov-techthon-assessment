@@ -1,0 +1,168 @@
+{
+    "Requirement": {
+			"title": "Requirement Assessment",
+			"evaluation": [
+				{
+					"id": 1,
+					"title": "Is the problem statement properly understood ?",
+					"weight": 0.40
+				},
+			{ 	"id": 2,
+					"title": "Are all fuctionality understood ?", 
+					"weight": 0.20
+				},
+				{ 	
+					"id": 3, 
+					"title": "Has the team come up with innovative features?", 
+					"weight": 0.30	
+				},
+				{ 
+					"id": 4, 
+					"title": "Are the features / functionality feasible / practicle ?", 
+					"weight": 0.05
+				},
+				{ 
+					"id": 5, 
+					"title": "Others",
+					"weight": 0.05
+				}
+			]
+    },
+    "ArchitectDesign": {
+			"title": "Architect-Design Assessment",
+			"evaluation": [
+				{
+					"id": 1,
+					"title": "Is the architecture / design cover all features / functionality ?",
+					"weight": 0.30
+				},
+			{ 	"id": 2,
+					"title": "Is the design scalable ?", 
+					"weight": 0.20
+				},
+				{ 	
+					"id": 3, 
+					"title": "Is the right technology applied ?", 
+					"weight": 0.20
+				},
+				{ 
+					"id": 4, 
+					"title": "Does the design cover security features", 
+					"weight": 0.10
+				},
+				{ 
+					"id": 5, 
+					"title": "Is the User Interface comprehensive (input / output)",
+					"weight": 0.15
+				},
+				{ 
+					"id": 6, 
+					"title": "Others",
+					"weight": 0.05
+				}
+			]
+    },
+    
+    "CodingTesting": {
+			"title": "Coding, Testing Assessment",
+			"evaluation": [
+				{
+					"id": 1,
+					"title": "Does the coding blocks cover the design and functionality",
+					"weight": 0.30
+				},
+			{ 	"id": 2,
+					"title": "Is the test plan / cases complete ? (cover all fetures)", 
+					"weight": 0.30
+				},
+				{ 	
+					"id": 3, 
+					"title": "Is the test data considered comprensive ?", 
+					"weight": 0.20
+				},
+				{ 
+					"id": 4, 
+					"title": "Is test automation considered / planned ?", 
+					"weight": 0.10
+				},
+				{ 
+					"id": 5, 
+					"title": "Documentation Prepared / quality of documentation",
+					"weight": 0.05
+				},
+				{ 
+					"id": 6, 
+					"title": "Others",
+					"weight": 0.05
+				}
+			]
+    },
+    "Final": {
+			"title": "Final Assessment",
+			"evaluation": [
+				{
+					"id": 1,
+					"title": "Is the result demonstrated",
+					"weight": 0.050
+				},
+			{ 	"id": 2,
+					"title": "Are all functionality developed and demonstrated", 
+					"weight": 0.20
+				},
+				{ 	
+					"id": 3, 
+					"title": "Quality of Architecture, Design, Coding", 
+					"weight": 0.10
+				},
+				{ 
+					"id": 4, 
+					"title": "Unique features implemented ?", 
+					"weight": 0.10
+				},
+				{ 
+					"id": 5, 
+					"title": "Documentation Prepared and quality of the documentation",
+					"weight": 0.05
+				},
+				{ 
+					"id": 6, 
+					"title": "Others",
+					"weight": 0.05
+				}
+			]
+    },
+    "Grand": {
+			"title": "Grand Assessment",
+			"evaluation": [
+				{
+					"id": 1,
+					"title": "Is the result demonstrated",
+					"weight": 0.050
+				},
+			{ 	"id": 2,
+					"title": "Are all functionality developed and demonstrated", 
+					"weight": 0.20
+				},
+				{ 	
+					"id": 3, 
+					"title": "Quality of Architecture, Design, Coding", 
+					"weight": 0.10
+				},
+				{ 
+					"id": 4, 
+					"title": "Unique features implemented ?", 
+					"weight": 0.10
+				},
+				{ 
+					"id": 5, 
+					"title": "Documentation Prepared and quality of the documentation",
+					"weight": 0.05
+				},
+				{ 
+					"id": 6, 
+					"title": "Others",
+					"weight": 0.05
+				}
+			]
+    }
+}

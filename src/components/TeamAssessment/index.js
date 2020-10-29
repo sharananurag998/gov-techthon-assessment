@@ -1,6 +1,7 @@
 import { InputNumber, Card, Space, Divider, Typography, Button } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { db, firebase } from '../firebase'
 import './teamAssessment.css'
 
 import assessmentsJSON from '../../constants/assessment.json'
@@ -34,7 +35,7 @@ const teamDummy = {
 	],
 }
 
-export default function TeamAssessment() {
+export default function TeamAssessment({ jury }) {
 	const { phase, teamId } = useParams()
 	const assessment = assessmentsJSON[phase]
 	const evaluations = assessment.evaluation
@@ -49,15 +50,22 @@ export default function TeamAssessment() {
 		// console.log('[DEBUG] evals: ', evals)
 	}, [])
 
-	const getScores = () => {
+	const evalScores = () => {
 		let score = 0.0
 
 		assessment.evaluation.forEach(evalObj => {
 			if (!evals[evalObj.id]) {
 				alert('Enter your rating for every input')
+				return
 			}
 
 			score += parseFloat(evalObj.weight) * evals[evalObj.id]
+		})
+
+		db.collection('marks').doc(teamId).add({
+			score,
+			jury_Name: jury.displayName,
+			timestamp: firebase.firestore.FieldValue.serverTimestamp(),
 		})
 
 		console.log(score)
@@ -133,7 +141,7 @@ export default function TeamAssessment() {
 						</div>
 					))}
 					<div>
-						<Button onClick={getScores} type='primary'>
+						<Button onClick={evalScores} type='primary'>
 							Submit
 						</Button>
 					</div>

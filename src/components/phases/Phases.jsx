@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from 'react'
+import React,{useEffect, useRef, useState} from 'react'
 import './Phases.css';
 import {db, firebase} from '../firebase';
 import { Link } from 'react-router-dom'
@@ -9,27 +9,35 @@ function Phases({user}) {
     const [phone, setPhone] = useState(null)
     const [details, setDetails] = useState(null);
 
-    useEffect(async() => {
-        // const usr = firebase.auth().currentUser;
-        // const snapshot = await db.collection("jury").get();
-        // setDetails(snapshot.docs.reduce(function (acc, doc, i) {
-        //       acc[doc.id] = doc.data();
-        //       return acc;
-        //     }, {}));
-        // if(details){
-        //     Object.keys(details).map(function(key, index) {
-        //     if(details[key].phone == usr.phoneNumber)
-        //     {
-        //         setName(details[key].name);
-        //         setPhone(details[key].phone);
-        //         setEmail(details[key].email);
-        //         console.log("User found in db");
-        //     }else{
-        //         console.log("User not in db");
-        //     }
-        // });
-        // }
+    const usr = useRef()
 
+    const setJuryDetails = async () => {
+        usr.current = firebase.auth().currentUser;
+        const snapshot = await db.collection("jury").get();
+
+        setDetails(snapshot.docs.reduce((acc, doc, i) => {
+            acc[doc.id] = doc.data();
+            return acc;
+        }, {}));
+    }
+
+    useEffect(() => {
+        setJuryDetails()
+
+        if (details) {
+            Object.keys(details).forEach((key, index) => {
+                if(details[key].phone === usr.current.phoneNumber) {
+                    setName(details[key].name);
+                    setPhone(details[key].phone);
+                    setEmail(details[key].email);
+                    console.log("User found in db");
+                } else {
+                    console.log("User not in db");
+                    console.log(usr.current)
+                    firebase.auth().signOut()
+                }
+            });
+        }
     }, [details])
 
     return (

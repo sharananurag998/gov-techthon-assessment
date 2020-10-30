@@ -11,6 +11,7 @@ import InputTeam from './components/InputTeam'
 
 function App() {
 	const [user, setUser] = useState(null)
+	const [juryName, setJuryName] = useState(null)
 
 	useEffect(() => {
 		const unsubscribe = auth.onAuthStateChanged(authUser => {
@@ -35,7 +36,7 @@ function App() {
 			<HeaderLogos />
 			<Router>
 				<Route exact path='/'>
-					{user ? <Phases /> : <Login />}
+					{user ? <Phases setUser={setUser} setJuryName={setJuryName} /> : <Login />}
 					{/* {user ? <Phases /> : <Phases />} */}
 				</Route>
 				<Switch>
@@ -43,7 +44,7 @@ function App() {
 						<InputTeam jury={user} />
 						{/* <InputTeam jury={{ name: 'JOHN THE JURY' }} /> */}
 						<Route path='/phases/:phase/assessment/:teamId'>
-							<TeamAssessment jury={user} />
+							<TeamAssessment jury={user} juryName={juryName} />
 						</Route>
 					</Route>
 				</Switch>

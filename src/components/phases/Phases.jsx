@@ -3,11 +3,10 @@ import './Phases.css';
 import {db, firebase} from '../firebase';
 import { Link } from 'react-router-dom'
 
-function Phases({user}) {
+function Phases({user, setUser, setJuryName}) {
     const [name, setName]= useState(null);
-    const [email, setEmail] = useState(null);
-    const [phone, setPhone] = useState(null)
-    const [details, setDetails] = useState(null);
+    const [group, setGroup] = useState(null);
+    const [phone, setPhone] = useState(null);
 
     const setJuryDetails = async () => {
         const usr = firebase.auth().currentUser;
@@ -24,18 +23,19 @@ function Phases({user}) {
                 {
                     setName(juryDetails[key].name);
                     setPhone(juryDetails[key].number);
-                    setEmail(juryDetails[key].email);
+                    setGroup(juryDetails[key].group);
+                    setUser(user => ({ ...user, name: juryDetails[key].name, group: juryDetails[key].group }));
+                    setJuryName(juryDetails[key].name);
                     console.log("User found in db");
                 } else {
                     console.log("User not in db");
                 }
             });
         }
-        setDetails(juryDetails);
     }
 
     useEffect(() => {
-        // setJuryDetails()
+        setJuryDetails()
     }, [])
 
     return (
@@ -43,12 +43,8 @@ function Phases({user}) {
             <div className="jury__detail">
                 <h3>
                 <p>Name: {name?name:"Jury Not in DB"}</p>
-                <p>Email: {email}</p>
+                <p>Group: {group}</p>
                 <p>Phone: {phone}</p>
-                
-                </h3>
-                <h3>
-                    Group: AI-Crop Recommendation
                 </h3>
             </div>
 

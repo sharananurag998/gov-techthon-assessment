@@ -35,20 +35,31 @@ const teamDummy = {
 	],
 }
 
-export default function TeamAssessment({ jury }) {
+export default function TeamAssessment({ jury, juryName }) {
 	const { phase, teamId } = useParams()
 	const assessment = assessmentsJSON[phase]
 	const evaluations = assessment.evaluation
 
+	const [team, setTeam] = useState({})
 	const [evals, setEvals] = useState({})
 	const [isSubmitted, setIsSubmitted] = useState(false)
 
+	const setTeamDetails = async () => {
+		const team = await db.collection('teams').doc(teamId).get()
+		console.log(team)
+
+		if (!team.exists) {
+			alert('Team not found')
+			console.log('Team not found')
+		} else {
+			console.log('Team data:', team.data())
+
+			setTeam(team.data())
+		}
+	}
+
 	useEffect(() => {
-		// fetch team from db
-		// console.log('[DEBUG] teamId: ', teamId)
-		// console.log('[DEBUG] phase: ', phase)
-		// console.log('[DEBUG] assessment: ', assessment)
-		// console.log('[DEBUG] evals: ', evals)
+		setTeamDetails()
 	}, [])
 
 	const evalScores = () => {
@@ -63,10 +74,9 @@ export default function TeamAssessment({ jury }) {
 			score += parseFloat(evalObj.weight) * evals[evalObj.id]
 		})
 
-		db.collection('marks').doc(teamId).add({
+		db.collection('phase').doc(phase).collection('marks').doc(teamId).collection('jury').doc(juryName).set({
 			score,
-			jury_Name: jury.displayName,
-			timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+			number: jury.phoneNumber,
 		})
 
 		setEvals({})
@@ -74,7 +84,8 @@ export default function TeamAssessment({ jury }) {
 	}
 
 	return isSubmitted ? (
-		<Redirect to={`/phases/${phase}`} />
+		//<Redirect to={`/phases/${phase}`} />
+		<Redirect to={`/`} />
 	) : (
 		<div className='assessmentWrapper'>
 			<Card>
@@ -90,10 +101,10 @@ export default function TeamAssessment({ jury }) {
 							level={4}
 							style={{ display: 'grid', gridTemplateColumns: '2fr 1fr' }}>
 							<div>
-								Team number: <Text>{teamDummy?.teamId}</Text>
+								Team number: <Text>{teamId}</Text>
 							</div>
 							<div>
-								Team name: <Text>{teamDummy?.teamName}</Text>
+								Team name: <Text>{team?.name}</Text>
 							</div>
 						</Title>
 

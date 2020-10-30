@@ -1,0 +1,100 @@
+import { Button } from 'antd'
+import React, { useEffect, useState } from 'react'
+import ReactExport from 'react-data-export'
+
+import { db } from '../firebase'
+
+const ExcelFile = ReactExport.ExcelFile
+const ExcelSheet = ReactExport.ExcelFile.ExcelSheet
+const ExcelColumn = ReactExport.ExcelFile.ExcelColumn
+
+export default function ExportToXLS() {
+	const [requirements, setRequirements] = useState()
+	const [architect, setArchitect] = useState()
+	const [coding, setCoding] = useState()
+	const [final, setFinal] = useState()
+	const [grand, setGrand] = useState()
+
+	useEffect(() => {
+		console.log('[DEBUG] useeffect in exporttoxls]')
+		// too lazy to rename these arrays
+		const requirementArray = []
+		const architectArray = []
+		const codingArray = []
+		const finalArray = []
+		const grandArray = []
+
+		const unsubscribe = db.collection('marks').onSnapshot(snap => {
+			snap.forEach(doc => {
+				const data = doc.data()
+
+				if (data.group && data.group === 'Alternate Crop Recommendation')
+					requirementArray.push(data)
+				if (data.group && data.group === 'Automation of Vehicle Fitness Check')
+					architectArray.push(data)
+				if (data.group && data.group === 'Unsupervised Test') codingArray.push(data)
+				if (data.group && data.group === 'Document Upload Tool') finalArray.push(data)
+				if (data.group && data.group === 'Seed Certification') grandArray.push(data)
+			})
+
+			console.log('[DEBUG] req ', requirementArray)
+			console.log('[DEBUG] architect ', architectArray)
+			console.log('[DEBUG] coding ', codingArray)
+			console.log('[DEBUG] final ', finalArray)
+			console.log('[DEBUG] grand ', grandArray)
+		})
+
+		setRequirements(requirementArray)
+		setArchitect(architectArray)
+		setCoding(codingArray)
+		setFinal(finalArray)
+		setGrand(grandArray)
+
+		return unsubscribe
+	}, [])
+
+	return (
+		<ExcelFile element={<Button danger>Download Data grouped by 'group'</Button>}>
+			<ExcelSheet data={requirements} name='Alternate Crop Recommendation'>
+				<ExcelColumn label='Group' value='group' />
+				<ExcelColumn label='Jury Name' value='juryName' />
+				<ExcelColumn label='Jury Number' value='juryNumber' />
+				<ExcelColumn label='phase' value='phase' />
+				<ExcelColumn label='score' value='score' />
+				<ExcelColumn label='teamId' value='teamId' />
+			</ExcelSheet>
+			<ExcelSheet data={architect} name='Automation of Vehicle Fitness Check'>
+				<ExcelColumn label='Group' value='group' />
+				<ExcelColumn label='Jury Name' value='juryName' />
+				<ExcelColumn label='Jury Number' value='juryNumber' />
+				<ExcelColumn label='phase' value='phase' />
+				<ExcelColumn label='score' value='score' />
+				<ExcelColumn label='teamId' value='teamId' />
+			</ExcelSheet>
+			<ExcelSheet data={coding} name='Unsupervised Test'>
+				<ExcelColumn label='Group' value='group' />
+				<ExcelColumn label='Jury Name' value='juryName' />
+				<ExcelColumn label='Jury Number' value='juryNumber' />
+				<ExcelColumn label='phase' value='phase' />
+				<ExcelColumn label='score' value='score' />
+				<ExcelColumn label='teamId' value='teamId' />
+			</ExcelSheet>
+			<ExcelSheet data={final} name='Document Upload Tool'>
+				<ExcelColumn label='Group' value='group' />
+				<ExcelColumn label='Jury Name' value='juryName' />
+				<ExcelColumn label='Jury Number' value='juryNumber' />
+				<ExcelColumn label='phase' value='phase' />
+				<ExcelColumn label='score' value='score' />
+				<ExcelColumn label='teamId' value='teamId' />
+			</ExcelSheet>
+			<ExcelSheet data={grand} name='Seed Certification'>
+				<ExcelColumn label='Group' value='group' />
+				<ExcelColumn label='Jury Name' value='juryName' />
+				<ExcelColumn label='Jury Number' value='juryNumber' />
+				<ExcelColumn label='phase' value='phase' />
+				<ExcelColumn label='score' value='score' />
+				<ExcelColumn label='teamId' value='teamId' />
+			</ExcelSheet>
+		</ExcelFile>
+	)
+}

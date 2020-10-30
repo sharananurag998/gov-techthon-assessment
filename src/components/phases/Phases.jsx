@@ -2,6 +2,7 @@ import React,{useEffect, useRef, useState} from 'react'
 import './Phases.css';
 import {db, firebase} from '../firebase';
 import { Link } from 'react-router-dom'
+import ExportToXLS from '../ExportToXLS'
 
 function Phases({ setJuryName }) {
     const [name, setName]= useState(null);
@@ -36,10 +37,10 @@ function Phases({ setJuryName }) {
         return unsubscribe
     }, [])
 
-    
 
     return (
         <div className="body__container">
+           
             <div className="jury__detail">
                 <h3>
                 <p>Name: {name?name:"Jury Not in DB"}</p>
@@ -48,6 +49,7 @@ function Phases({ setJuryName }) {
                 </h3>
             </div>
 
+            {group && group === 'admin' &&  <ExportToXLS />}
             <div className="phases__heading">
                 <h2>Select the Phase to Evaluate</h2>
             </div>

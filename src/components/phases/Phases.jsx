@@ -9,29 +9,34 @@ function Phases({user}) {
     const [phone, setPhone] = useState(null)
     const [details, setDetails] = useState(null);
 
-
-    useEffect(async () => {
+    const setJuryDetails = async () => {
         const usr = firebase.auth().currentUser;
         const snapshot = await db.collection("jury").get();
-        setDetails(snapshot.docs.reduce((acc, doc, i) => {
+
+        const juryDetails = snapshot.docs.reduce((acc, doc, i) => {
             acc[doc.id] = doc.data();
             return acc;
-        }, {}));
-        if(details){
-            Object.keys(details).map(function(key, index) {
-            if(details[key].phone == usr.phoneNumber)
-            {
-                setName(details[key].name);
-                setPhone(details[key].phone);
-                setEmail(details[key].email);
-                console.log("User found in db");
-            }else{
-                console.log("User not in db");
-            }
-        });
-        }
+        }, {})
 
-    }, [details])
+        if(juryDetails){
+            Object.keys(juryDetails).map(function(key, index) {
+                if(juryDetails[key].number === usr.phoneNumber)
+                {
+                    setName(juryDetails[key].name);
+                    setPhone(juryDetails[key].number);
+                    setEmail(juryDetails[key].email);
+                    console.log("User found in db");
+                } else {
+                    console.log("User not in db");
+                }
+            });
+        }
+        setDetails(juryDetails);
+    }
+
+    useEffect(() => {
+        // setJuryDetails()
+    }, [])
 
     return (
         <div className="body__container">

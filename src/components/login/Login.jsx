@@ -12,7 +12,7 @@ function Login() {
     const signIn = (e) => {
         e.preventDefault();
         var appVerifier = window.recaptchaVerifier;
-        auth.signInWithPhoneNumber(mobile, appVerifier)
+        auth.signInWithPhoneNumber("+91" + mobile, appVerifier)
         .then(function (confirmationResult) {
             setOTPsent(true);
             setConfirm(confirmationResult);
@@ -26,11 +26,11 @@ function Login() {
     };
     useEffect(() => {
         window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('sign-in-button', {
-        'size': 'invisible',
-        'callback': function(response) {
-            // reCAPTCHA solved, allow signInWithPhoneNumber.
-            signIn();
-        }
+            'size': 'invisible',
+            'callback': function(response) {
+                // reCAPTCHA solved, allow signInWithPhoneNumber.
+                signIn();
+            }
         });
     }, [])
 
@@ -53,7 +53,7 @@ function Login() {
                 <div className="login">
                     <h1 className="login__heading">Jury Login</h1>
                     <form >
-                        <label htmlFor="mobNumber">Mobile Number (Precede with (+91))</label>
+                        <label htmlFor="mobNumber">Mobile Number </label>
                         <input type="tel" name="mobNumber" id="mobNumber" placeholder="Enter your Mobile Number" onChange={(e)=>{setMobile(e.target.value)}} required/>
                         {OTPsent&&<input type="number" name="otp" id="otp" placeholder="Enter OTP" onChange={(e)=>{setOtp(e.target.value)}} required/>}
                         <br/>

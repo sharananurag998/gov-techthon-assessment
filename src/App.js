@@ -20,7 +20,6 @@ function App() {
 				setUser(authUser)
 			} else {
 				//user logged out
-				alert('Jury details not found...')
 				setUser(null)
 			}
 		})

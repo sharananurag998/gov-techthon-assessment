@@ -1,17 +1,16 @@
-import firebase from "firebase";
-
+import firebase from 'firebase'
 
 const firebaseApp = firebase.initializeApp({
-  apiKey: "AIzaSyDVBfyiG2ynAFJaRETQuDZTEaa-9jqHy8M",
-  authDomain: "gov-techthon-assessment.firebaseapp.com",
-  databaseURL: "https://gov-techthon-assessment.firebaseio.com",
-  projectId: "gov-techthon-assessment",
-  storageBucket: "gov-techthon-assessment.appspot.com",
-  messagingSenderId: "229055794635",
-  appId: "1:229055794635:web:40c51d365ac42939663a4e"
-});
+	apiKey: 'AIzaSyAdL6GtL9UthE3T_ZBp1tEvDEyzmZymdsQ',
+	authDomain: 'govtechthonassessment.firebaseapp.com',
+	databaseURL: 'https://govtechthonassessment.firebaseio.com',
+	projectId: 'govtechthonassessment',
+	storageBucket: 'govtechthonassessment.appspot.com',
+	messagingSenderId: '525260456653',
+	appId: '1:525260456653:web:a741e373ab8fb67f22df84',
+})
 
-const db = firebaseApp.firestore();
-const auth = firebase.auth();
+const db = firebaseApp.firestore()
+const auth = firebase.auth()
 
-export { db, auth, firebase };
+export { db, auth, firebase }

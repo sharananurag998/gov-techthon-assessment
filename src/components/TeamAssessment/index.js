@@ -1,6 +1,6 @@
 import { InputNumber, Card, Space, Divider, Typography, Button } from 'antd'
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Redirect, useParams, useRouteMatch } from 'react-router-dom'
 import { db, firebase } from '../firebase'
 import './teamAssessment.css'
 
@@ -41,6 +41,7 @@ export default function TeamAssessment({ jury }) {
 	const evaluations = assessment.evaluation
 
 	const [evals, setEvals] = useState({})
+	const [isSubmitted, setIsSubmitted] = useState(false)
 
 	useEffect(() => {
 		// fetch team from db
@@ -54,7 +55,7 @@ export default function TeamAssessment({ jury }) {
 		let score = 0.0
 
 		assessment.evaluation.forEach(evalObj => {
-			if (!evals[evalObj.id]) {
+			if (!evals[evalObj.id] && evals[evalObj.id] !== 0) {
 				alert('Enter your rating for every input')
 				return
 			}
@@ -68,50 +69,40 @@ export default function TeamAssessment({ jury }) {
 			timestamp: firebase.firestore.FieldValue.serverTimestamp(),
 		})
 
-		console.log(score)
+		setEvals({})
+		setIsSubmitted(true)
 	}
 
-	return (
+	return isSubmitted ? (
+		<Redirect to={`/phases/${phase}`} />
+	) : (
 		<div className='assessmentWrapper'>
 			<Card>
-				<div style={{ padding: 20, width: '100%' }}>
+				<div>
 					<Typography>
 						<Title>
-							<div>
-								<Text keyboard>{assessment.title}</Text>
-							</div>
+							<Text>{assessment.title}</Text>
 						</Title>
 					</Typography>
 					<Divider />
 					<Typography>
-						<Title level={4}>
+						<Title
+							level={4}
+							style={{ display: 'grid', gridTemplateColumns: '2fr 1fr' }}>
 							<div>
-								Team name: <Text keyboard>{teamDummy?.teamName}</Text>
+								Team number: <Text>{teamDummy?.teamId}</Text>
+							</div>
+							<div>
+								Team name: <Text>{teamDummy?.teamName}</Text>
 							</div>
 						</Title>
-						<Title level={5}>
-							<div>
-								Team number: <Text code>{teamDummy?.teamId}</Text>
-							</div>
-						</Title>
-						<Divider />
-						<div>
-							<Title level={3}>Members</Title>
-							{teamDummy?.members.map((member, index) => (
-								<Typography key={index}>
-									<Paragraph>
-										<Space>
-											<Text strong>member {member.id}:</Text>
-											<Text>name: </Text>
-											<Text code>{member.name} </Text> <Text>email: </Text>
-											<Text code>{member.email}</Text>
-										</Space>
-									</Paragraph>
-								</Typography>
-							))}
-						</div>
+
 						<Divider />
 					</Typography>
+					<Title level={4} style={{ display: 'grid', gridTemplateColumns: '2fr 1fr' }}>
+						<Text>Assessment parameters</Text>
+						<Text> 0-low, 10-max</Text>
+					</Title>
 					{evaluations.map(param => (
 						<div
 							key={param.id}
@@ -136,7 +127,6 @@ export default function TeamAssessment({ jury }) {
 										setEvals(evals => ({ ...evals, [param.id]: value }))
 									}
 								/>
-								<Text> out of 10</Text>
 							</div>
 						</div>
 					))}

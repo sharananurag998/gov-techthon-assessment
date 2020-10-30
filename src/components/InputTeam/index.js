@@ -31,7 +31,7 @@ export default function InputTeam({ jury }) {
 			}}>
 			<div>
 				<Typography>
-					<Title style={{ fontSize: 75 }}>Welcome {jury.name}</Title>
+					<Title>Welcome {jury?.name}</Title>
 					<div
 						style={{
 							display: 'grid',
@@ -39,12 +39,11 @@ export default function InputTeam({ jury }) {
 							columnGap: 15,
 							placeItems: 'center',
 						}}>
-						<Paragraph style={{ fontSize: 25 }}>
-							Enter Team ID to start evaluating on
+						<Paragraph>
+							Enter Team ID to start assessment{' '}
 							<Text strong>{assessmentsJSON[phase].title}</Text>
 						</Paragraph>
 						<Space>
-							<Text strong>Team Id: </Text>
 							<Input value={teamId} onChange={e => setTeamId(e.target.value)} />
 							<Button onClick={routeToTeamAssessment}>Evaluate</Button>
 						</Space>

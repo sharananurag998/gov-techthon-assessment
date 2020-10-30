@@ -36,7 +36,7 @@ function App() {
 			<HeaderLogos />
 			<Router>
 				<Route exact path='/'>
-					{user ? <Phases setUser={setUser} setJuryName={setJuryName} /> : <Login />}
+					{user ? <Phases setJuryName={setJuryName} /> : <Login />}
 					{/* {user ? <Phases /> : <Phases />} */}
 				</Route>
 				<Switch>

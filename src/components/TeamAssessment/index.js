@@ -8,33 +8,6 @@ import assessmentsJSON from '../../constants/assessment.json'
 
 const { Title, Paragraph, Text } = Typography
 
-const teamDummy = {
-	teamName: 'HACKERMANS',
-	teamId: 1,
-	members: [
-		{
-			id: 1,
-			name: 'John Doe',
-			email: 'JohnDoe@gmail.com',
-		},
-		{
-			id: 2,
-			name: 'John Doe',
-			email: 'JohnDoe@gmail.com',
-		},
-		{
-			id: 3,
-			name: 'John Doe',
-			email: 'JohnDoe@gmail.com',
-		},
-		{
-			id: 4,
-			name: 'John Doe',
-			email: 'JohnDoe@gmail.com',
-		},
-	],
-}
-
 export default function TeamAssessment({ jury, juryName }) {
 	const { phase, teamId } = useParams()
 	const assessment = assessmentsJSON[phase]
@@ -74,9 +47,13 @@ export default function TeamAssessment({ jury, juryName }) {
 			score += parseFloat(evalObj.weight) * evals[evalObj.id]
 		})
 
-		db.collection('phase').doc(phase).collection('marks').doc(teamId).collection('jury').doc(juryName).set({
+		db.collection('marks').add({
+			group: team.group,
+			juryName: juryName,
+			juryNumber: jury.phoneNumber,
+			phase: phase,
 			score,
-			number: jury.phoneNumber,
+			teamId: teamId,
 		})
 
 		setEvals({})

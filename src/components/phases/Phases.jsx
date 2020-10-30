@@ -3,40 +3,40 @@ import './Phases.css';
 import {db, firebase} from '../firebase';
 import { Link } from 'react-router-dom'
 
-function Phases({user, setUser, setJuryName}) {
+function Phases({ setJuryName }) {
     const [name, setName]= useState(null);
     const [group, setGroup] = useState(null);
     const [phone, setPhone] = useState(null);
 
-    const setJuryDetails = async () => {
-        const usr = firebase.auth().currentUser;
-        const snapshot = await db.collection("jury").get();
-
-        const juryDetails = snapshot.docs.reduce((acc, doc, i) => {
-            acc[doc.id] = doc.data();
-            return acc;
-        }, {})
-
-        if(juryDetails){
-            Object.keys(juryDetails).map(function(key, index) {
-                if(juryDetails[key].number === usr.phoneNumber)
-                {
-                    setName(juryDetails[key].name);
-                    setPhone(juryDetails[key].number);
-                    setGroup(juryDetails[key].group);
-                    setUser(user => ({ ...user, name: juryDetails[key].name, group: juryDetails[key].group }));
-                    setJuryName(juryDetails[key].name);
-                    console.log("User found in db");
-                } else {
-                    console.log("User not in db");
-                }
-            });
-        }
-    }
-
     useEffect(() => {
-        setJuryDetails()
+        const usr = firebase.auth().currentUser;
+        
+        const unsubscribe = db.collection("jury").onSnapshot(snapshot => {
+            const juryDetails = snapshot.docs.reduce((acc, doc, i) => {
+                acc[doc.id] = doc.data();
+                return acc;
+            }, {})
+    
+            if(juryDetails){
+                Object.keys(juryDetails).map(function(key, index) {
+                    if(juryDetails[key].number === usr.phoneNumber)
+                    {
+                        setName(juryDetails[key].name);
+                        setPhone(juryDetails[key].number);
+                        setGroup(juryDetails[key].group);
+                        setJuryName(juryDetails[key].name);
+                        console.log("User found in db");
+                    } else {
+                        console.log("User not in db");
+                    }
+                });
+            }
+        })
+
+        return unsubscribe
     }, [])
+
+    
 
     return (
         <div className="body__container">

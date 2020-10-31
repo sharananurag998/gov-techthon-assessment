@@ -56,6 +56,10 @@ export default function TeamAssessment({ jury }) {
 			param4: evals[4],
 			param5: evals[5],
 			param6: evals[6] || 'NA',
+			param7: evals[7] || 'NA',
+			param8: evals[8] || 'NA',
+			param9: evals[9] || 'NA',
+			param10: evals[10] || 'NA',
 		}
 
 		// console.log('marks: ', marks)

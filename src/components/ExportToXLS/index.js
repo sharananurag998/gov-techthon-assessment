@@ -73,6 +73,10 @@ export default function ExportToXLS() {
 				<ExcelColumn label='parameter 4' value='param4' />
 				<ExcelColumn label='parameter 5' value='param5' />
 				<ExcelColumn label='parameter 6' value='param6' />
+				<ExcelColumn label='parameter 7' value='param7' />
+				<ExcelColumn label='parameter 8' value='param8' />
+				<ExcelColumn label='parameter 9' value='param9' />
+				<ExcelColumn label='parameter 10' value='param10' />
 			</ExcelSheet>
 			<ExcelSheet data={architect} name='Automation of Vehicle Fitness Check'>
 				<ExcelColumn label='Group' value='group' />
@@ -87,6 +91,10 @@ export default function ExportToXLS() {
 				<ExcelColumn label='parameter 4' value='param4' />
 				<ExcelColumn label='parameter 5' value='param5' />
 				<ExcelColumn label='parameter 6' value='param6' />
+				<ExcelColumn label='parameter 7' value='param7' />
+				<ExcelColumn label='parameter 8' value='param8' />
+				<ExcelColumn label='parameter 9' value='param9' />
+				<ExcelColumn label='parameter 10' value='param10' />
 			</ExcelSheet>
 			<ExcelSheet data={coding} name='Unsupervised Test'>
 				<ExcelColumn label='Group' value='group' />
@@ -101,6 +109,10 @@ export default function ExportToXLS() {
 				<ExcelColumn label='parameter 4' value='param4' />
 				<ExcelColumn label='parameter 5' value='param5' />
 				<ExcelColumn label='parameter 6' value='param6' />
+				<ExcelColumn label='parameter 7' value='param7' />
+				<ExcelColumn label='parameter 8' value='param8' />
+				<ExcelColumn label='parameter 9' value='param9' />
+				<ExcelColumn label='parameter 10' value='param10' />
 			</ExcelSheet>
 			<ExcelSheet data={final} name='Document Upload Tool'>
 				<ExcelColumn label='Group' value='group' />
@@ -115,6 +127,10 @@ export default function ExportToXLS() {
 				<ExcelColumn label='parameter 4' value='param4' />
 				<ExcelColumn label='parameter 5' value='param5' />
 				<ExcelColumn label='parameter 6' value='param6' />
+				<ExcelColumn label='parameter 7' value='param7' />
+				<ExcelColumn label='parameter 8' value='param8' />
+				<ExcelColumn label='parameter 9' value='param9' />
+				<ExcelColumn label='parameter 10' value='param10' />
 			</ExcelSheet>
 			<ExcelSheet data={grand} name='Seed Certification'>
 				<ExcelColumn label='Group' value='group' />
@@ -129,6 +145,10 @@ export default function ExportToXLS() {
 				<ExcelColumn label='parameter 4' value='param4' />
 				<ExcelColumn label='parameter 5' value='param5' />
 				<ExcelColumn label='parameter 6' value='param6' />
+				<ExcelColumn label='parameter 7' value='param7' />
+				<ExcelColumn label='parameter 8' value='param8' />
+				<ExcelColumn label='parameter 9' value='param9' />
+				<ExcelColumn label='parameter 10' value='param10' />
 			</ExcelSheet>
 		</ExcelFile>
 	)

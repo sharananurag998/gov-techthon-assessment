@@ -3,11 +3,12 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import Login from './components/login/Login'
 import Phases from './components/phases/Phases'
-import { auth } from './components/firebase'
+import { auth, firebase } from './components/firebase'
 import HeaderLogos from './components/HeaderLogos'
 import TeamAssessment from './components/TeamAssessment'
 import InputTeam from './components/InputTeam'
 import './App.css'
+import { Button } from 'antd'
 
 function App() {
 	const [user, setUser] = useState(null)
@@ -35,6 +36,14 @@ function App() {
 		<>
 			<HeaderLogos />
 			<Router>
+				<div style={{ display: 'flex', paddingLeft: '10%', paddingRight: '10%' }}>
+					<Button
+						style={{ marginLeft: 'auto' }}
+						danger
+						onClick={e => firebase.auth().signOut()}>
+						LOGOUT
+					</Button>
+				</div>
 				<Route exact path='/'>
 					{user ? <Phases setJuryName={setJuryName} /> : <Login />}
 					{/* {user ? <Phases /> : <Phases />} */}

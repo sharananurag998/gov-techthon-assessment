@@ -57,24 +57,20 @@ function Phases({ setJuryName }) {
             </div>
 
             <div className="phases__container">
-                <p>
+                {/* <p>
                     <Link to="/phases/Requirement" target="_self">Requirement Assessment</Link>
+                </p> */}
+
+                <p>
+                    <Link to="/phases/DesignCoding" target="_self">Design and Coding Assessment</Link>
                 </p>
 
                 {/* <p>
-                    2. <Link to="/phases/ArchitectDesign" target="_self">Architect-Design Assessment</Link>
+                    <Link to="/phases/Final" target="_self">Final Assessment</Link>
                 </p>
 
                 <p>
-                    3. <Link to="/phases/CodingTesting" target="_self">Coding, Testing Assessment</Link>
-                </p>
-
-                <p>
-                    4. <Link to="/phases/Final" target="_self">Final Assessment</Link>
-                </p>
-
-                <p>
-                    5. <Link to="/phases/Grand" target="_self">Grand Assessment</Link>
+                    <Link to="/phases/Grand" target="_self">Grand Assessment</Link>
                 </p> */}
 
             </div>

@@ -27,83 +27,70 @@
 					"weight": 0.05
 				}
 			]
-    },
-    "ArchitectDesign": {
-			"title": "Architect-Design Assessment",
+		},
+		
+    "DesignCoding": {
+			"title": "Design and Coding Assessment",
 			"evaluation": [
 				{
 					"id": 1,
 					"title": "Is the architecture / design cover all features / functionality ?",
-					"weight": 0.30
+					"weight": 0.20
 				},
 			{ 	"id": 2,
-					"title": "Is the design scalable ?", 
-					"weight": 0.20
+					"title": "Is the right technology applied ?", 
+					"weight": 0.10
 				},
 				{ 	
 					"id": 3, 
-					"title": "Is the right technology applied ?", 
+					"title": "Does the design cover security features and scalable?", 
 					"weight": 0.20
 				},
 				{ 
 					"id": 4, 
-					"title": "Does the design cover security features", 
+					"title": "Is the User Interface comprehensive (input / output)", 
 					"weight": 0.10
 				},
 				{ 
 					"id": 5, 
-					"title": "Is the User Interface comprehensive (input / output)",
+					"title": "Does the coding blocks cover the design and functionality",
 					"weight": 0.15
 				},
 				{ 
 					"id": 6, 
-					"title": "Others",
+					"title": "Is the test plan / cases complete ? (cover all fetures)",
 					"weight": 0.05
+				},
+				{ 
+					"id": 7, 
+					"title": "Is the test data considered comprensive ?",
+					"weight": 0.10
+				},
+				{ 
+					"id": 8, 
+					"title": "Is test automation considered / planned ?",
+					"weight": 0.05
+				},
+				{ 
+					"id": 9, 
+					"title": "Documentation Prepared / quality of documentation",
+					"weight": 0.03
+				},
+				{ 
+					"id": 10, 
+					"title": "Others",
+					"weight": 0.02
 				}
 			]
     },
     
-    "CodingTesting": {
-			"title": "Coding, Testing Assessment",
-			"evaluation": [
-				{
-					"id": 1,
-					"title": "Does the coding blocks cover the design and functionality",
-					"weight": 0.30
-				},
-			{ 	"id": 2,
-					"title": "Is the test plan / cases complete ? (cover all fetures)", 
-					"weight": 0.30
-				},
-				{ 	
-					"id": 3, 
-					"title": "Is the test data considered comprensive ?", 
-					"weight": 0.20
-				},
-				{ 
-					"id": 4, 
-					"title": "Is test automation considered / planned ?", 
-					"weight": 0.10
-				},
-				{ 
-					"id": 5, 
-					"title": "Documentation Prepared / quality of documentation",
-					"weight": 0.05
-				},
-				{ 
-					"id": 6, 
-					"title": "Others",
-					"weight": 0.05
-				}
-			]
-    },
     "Final": {
 			"title": "Final Assessment",
 			"evaluation": [
 				{
 					"id": 1,
 					"title": "Is the result demonstrated",
-					"weight": 0.050
+					"weight": 0.50
 				},
 			{ 	"id": 2,
 					"title": "Are all functionality developed and demonstrated", 
@@ -137,7 +124,7 @@
 				{
 					"id": 1,
 					"title": "Is the result demonstrated",
-					"weight": 0.050
+					"weight": 0.50
 				},
 			{ 	"id": 2,
 					"title": "Are all functionality developed and demonstrated", 

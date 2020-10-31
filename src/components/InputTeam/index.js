@@ -1,6 +1,7 @@
 import { Button, Input, Space, Typography } from 'antd'
 import React, { useState } from 'react'
 import { Redirect, useParams, useRouteMatch } from 'react-router-dom'
+import './index.css'
 
 import assessmentsJSON from '../../constants/assessment.json'
 
@@ -31,20 +32,14 @@ export default function InputTeam({ jury }) {
 			}}>
 			<div>
 				<Typography>
-					<Title>Welcome {jury?.name}</Title>
-					<div
-						style={{
-							display: 'grid',
-							gridTemplateColumns: '2fr 1fr',
-							columnGap: 15,
-							placeItems: 'center',
-						}}>
-						<Paragraph>
-							Enter Team ID to start assessment{' '}
-							<Text strong>{assessmentsJSON[phase].title}</Text>
-						</Paragraph>
+					<Title className="phase__heading">{assessmentsJSON[phase].title}</Title>
+					<div className="team__input">
 						<Space>
-							<Input value={teamId} onChange={e => setTeamId(e.target.value)} />
+							<Paragraph className="team__para">
+								Enter Team ID to start
+							</Paragraph>
+						
+							<Input className="team__input" value={teamId} onChange={e => setTeamId(e.target.value)} />
 							<Button onClick={routeToTeamAssessment}>Evaluate</Button>
 						</Space>
 					</div>

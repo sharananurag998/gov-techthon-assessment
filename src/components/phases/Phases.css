@@ -1,6 +1,6 @@
 .phases__container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     margin-top: 80px;
     padding: 10px;
     background-color: white;
@@ -9,6 +9,7 @@
 .phases__heading {
     margin-top: 50px;
     margin-left: 2%;
+    text-align: center;
 }
 
 h2 {

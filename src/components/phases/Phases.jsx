@@ -51,13 +51,14 @@ function Phases({ setJuryName }) {
             </div>
 
             {group && group === 'admin' &&  <ExportToXLS />}
+            
             <div className="phases__heading">
                 <h2>Select the Phase to Evaluate</h2>
             </div>
 
             <div className="phases__container">
                 <p>
-                    1. <Link to="/phases/Requirement" target="_self">Requirement Assessment</Link>
+                    <Link to="/phases/Requirement" target="_self">Requirement Assessment</Link>
                 </p>
 
                 {/* <p>

@@ -38,7 +38,7 @@ function Login() {
         e.preventDefault();
             confirm.confirm(otp).then(function (result) {
             setUser(result.user);
-            console.log(user);
+            // console.log(user);
             history.push({pathname:"/"})
             }).catch(function (error) {
                 console.error(error);

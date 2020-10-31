@@ -15,18 +15,16 @@ export default function TeamAssessment({ jury, juryName }) {
 
 	const [team, setTeam] = useState({})
 	const [evals, setEvals] = useState({})
-	const [isSubmitted, setIsSubmitted] = useState(false)
 
 	const setTeamDetails = async () => {
 		const team = await db.collection('teams').doc(teamId).get()
-		console.log(team)
+		// console.log(team)
 
 		if (!team.exists) {
 			alert('Team not found')
 			console.log('Team not found')
 		} else {
-			console.log('Team data:', team.data())
-
+			// console.log('Team data:', team.data())
 			setTeam(team.data())
 		}
 	}
@@ -37,33 +35,47 @@ export default function TeamAssessment({ jury, juryName }) {
 
 	const evalScores = () => {
 		let score = 0.0
+		let isValid = true
 
 		assessment.evaluation.forEach(evalObj => {
 			if (!evals[evalObj.id] && evals[evalObj.id] !== 0) {
-				alert('Enter your rating for every input')
-				return
+				isValid = false
 			}
 
 			score += parseFloat(evalObj.weight) * evals[evalObj.id]
 		})
 
-		db.collection('marks').add({
+		const marks = {
 			group: team.group,
 			juryName: juryName,
 			juryNumber: jury.phoneNumber,
 			phase: phase,
 			score,
 			teamId: teamId,
-		})
+			param1: evals[1],
+			param2: evals[2],
+			param3: evals[3],
+			param4: evals[4],
+			param5: evals[5],
+			param6: evals[6] || 'NA',
+		}
 
-		setEvals({})
-		setIsSubmitted(true)
+		console.log('marks: ', marks)
+
+		if (isValid) {
+			db.collection('marks').add(marks)
+
+			setEvals({})
+			setTimeout(() => {
+				window.location.href = `/phases/${phase}`
+			}, 1000)
+			alert(`Evaluation of team: ${teamId} done successfully!`)
+		} else {
+			alert('Enter your rating for every input')
+		}
 	}
 
-	return isSubmitted ? (
-		//<Redirect to={`/phases/${phase}`} />
-		<Redirect to={`/`} />
-	) : (
+	return (
 		<div className='assessmentWrapper'>
 			<Card>
 				<div>

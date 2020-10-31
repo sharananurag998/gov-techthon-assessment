@@ -16,7 +16,7 @@ export default function InputTeam({ jury }) {
 
 	const routeToTeamAssessment = () => {
 		const route = `${url}/assessment/${teamId}`
-		console.log(url)
+		// console.log(url)
 		setRedirect(route)
 	}
 

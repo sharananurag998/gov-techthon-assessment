@@ -8,7 +8,7 @@ import HeaderLogos from './components/HeaderLogos'
 import TeamAssessment from './components/TeamAssessment'
 import './App.css'
 import InputTeam from './components/InputTeam'
-
+import ResultPage from './components/resultpage';
 function App() {
 	const [user, setUser] = useState(null)
 	const [juryName, setJuryName] = useState(null)
@@ -48,6 +48,9 @@ function App() {
 						</Route>
 					</Route>
 				</Switch>
+				<Route path="/results">
+					{user&&<ResultPage/>}
+				</Route>
 			</Router>
 		</>
 	)

@@ -19,6 +19,7 @@ export default function TeamAssessment({ jury, juryName }) {
 
 	const setTeamDetails = async () => {
 		const team = await db.collection('teams').doc(teamId).get()
+		console.log("Fetched team details");
 		console.log(team)
 
 		if (!team.exists) {

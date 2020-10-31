@@ -15,6 +15,7 @@ function Phases({ setJuryName }) {
         const unsubscribe = db.collection("jury").onSnapshot(snapshot => {
             const juryDetails = snapshot.docs.reduce((acc, doc, i) => {
                 acc[doc.id] = doc.data();
+                console.log("Fetched jury details");
                 return acc;
             }, {})
     

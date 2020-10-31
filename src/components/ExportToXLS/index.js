@@ -16,7 +16,7 @@ export default function ExportToXLS() {
 	const [grand, setGrand] = useState()
 
 	useEffect(() => {
-		console.log('[DEBUG] useeffect in exporttoxls]')
+		// console.log('[DEBUG] useeffect in exporttoxls]')
 		// too lazy to rename these arrays
 		const requirementArray = []
 		const architectArray = []
@@ -37,11 +37,11 @@ export default function ExportToXLS() {
 				if (data.group && data.group === 'Seed Certification') grandArray.push(data)
 			})
 
-			console.log('[DEBUG] req ', requirementArray)
-			console.log('[DEBUG] architect ', architectArray)
-			console.log('[DEBUG] coding ', codingArray)
-			console.log('[DEBUG] final ', finalArray)
-			console.log('[DEBUG] grand ', grandArray)
+			// console.log('[DEBUG] req ', requirementArray)
+			// console.log('[DEBUG] architect ', architectArray)
+			// console.log('[DEBUG] coding ', codingArray)
+			// console.log('[DEBUG] final ', finalArray)
+			// console.log('[DEBUG] grand ', grandArray)
 		})
 
 		setRequirements(requirementArray)
@@ -54,7 +54,12 @@ export default function ExportToXLS() {
 	}, [])
 
 	return (
-		<ExcelFile element={<Button danger>Download Data grouped by 'group'</Button>}>
+		<ExcelFile
+			element={
+				<Button style={{ marginLeft: 85 }} danger>
+					Download Data grouped by 'group'
+				</Button>
+			}>
 			<ExcelSheet data={requirements} name='Alternate Crop Recommendation'>
 				<ExcelColumn label='Group' value='group' />
 				<ExcelColumn label='Jury Name' value='juryName' />

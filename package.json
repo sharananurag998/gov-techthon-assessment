@@ -9,6 +9,7 @@
     "antd": "^4.7.3",
     "file-saver": "^2.0.2",
     "firebase": "^8.0.0",
+    "json2xls": "^0.1.2",
     "react": "^17.0.1",
     "react-data-export": "^0.6.0",
     "react-dom": "^17.0.1",

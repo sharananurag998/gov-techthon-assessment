@@ -60,7 +60,7 @@ function Phases({ setJuryName }) {
                     1. <Link to="/phases/Requirement" target="_self">Requirement Assessment</Link>
                 </p>
 
-                <p>
+                {/* <p>
                     2. <Link to="/phases/ArchitectDesign" target="_self">Architect-Design Assessment</Link>
                 </p>
 
@@ -74,7 +74,7 @@ function Phases({ setJuryName }) {
 
                 <p>
                     5. <Link to="/phases/Grand" target="_self">Grand Assessment</Link>
-                </p>
+                </p> */}
 
             </div>
         </div>

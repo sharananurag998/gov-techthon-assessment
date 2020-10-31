@@ -8,13 +8,15 @@ import assessmentsJSON from '../../constants/assessment.json'
 
 const { Title, Paragraph, Text } = Typography
 
-export default function TeamAssessment({ jury, juryName }) {
+export default function TeamAssessment({ jury }) {
 	const { phase, teamId } = useParams()
 	const assessment = assessmentsJSON[phase]
 	const evaluations = assessment.evaluation
 
 	const [team, setTeam] = useState({})
 	const [evals, setEvals] = useState({})
+	// const [redirect, setRedirect] = useState(false)
+	const [juryName, setJuryName] = useState()
 
 	const setTeamDetails = async () => {
 		const team = await db.collection('teams').doc(teamId).get()
@@ -22,16 +24,12 @@ export default function TeamAssessment({ jury, juryName }) {
 
 		if (!team.exists) {
 			alert('Team not found')
-			console.log('Team not found')
+			console.error('Team not found')
 		} else {
 			// console.log('Team data:', team.data())
 			setTeam(team.data())
 		}
 	}
-
-	useEffect(() => {
-		setTeamDetails()
-	}, [])
 
 	const evalScores = () => {
 		let score = 0.0
@@ -60,20 +58,56 @@ export default function TeamAssessment({ jury, juryName }) {
 			param6: evals[6] || 'NA',
 		}
 
-		console.log('marks: ', marks)
+		// console.log('marks: ', marks)
 
 		if (isValid) {
 			db.collection('marks').add(marks)
 
 			setEvals({})
+			// setRedirect(true)
+			alert(`Evaluation of Team number: ${teamId} done successfully!`)
 			setTimeout(() => {
 				window.location.href = `/phases/${phase}`
 			}, 1000)
-			alert(`Evaluation of team: ${teamId} done successfully!`)
 		} else {
 			alert('Enter your rating for every input')
 		}
 	}
+
+	useEffect(() => {
+		const usr = firebase.auth().currentUser
+
+		const unsubscribe = db.collection('jury').onSnapshot(snapshot => {
+			const juryDetails = snapshot.docs.reduce((acc, doc, i) => {
+				acc[doc.id] = doc.data()
+				// console.log('Fetched jury details')
+				return acc
+			}, {})
+
+			let jname
+			if (juryDetails) {
+				Object.keys(juryDetails).map(function (key, index) {
+					if (juryDetails[key].number === usr.phoneNumber) {
+						jname = juryDetails[key].name
+						setJuryName(jname)
+						// console.log('User found in db')
+					}
+				})
+			}
+
+			if (!jname) {
+				// console.log('User not in db')
+				alert('[Unauthorized] Jury not found in database')
+				window.location.href = `/`
+			}
+		})
+
+		return unsubscribe
+	}, [])
+
+	useEffect(() => {
+		setTeamDetails()
+	}, [])
 
 	return (
 		<div className='assessmentWrapper'>
@@ -101,7 +135,7 @@ export default function TeamAssessment({ jury, juryName }) {
 					</Typography>
 					<Title level={4} style={{ display: 'grid', gridTemplateColumns: '2fr 1fr' }}>
 						<Text>Assessment parameters</Text>
-						<Text> 0-low, 10-max</Text>
+						<Text> 0-lowest, 10-highest</Text>
 					</Title>
 					{evaluations.map(param => (
 						<div

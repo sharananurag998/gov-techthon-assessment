@@ -67,6 +67,12 @@ export default function ExportToXLS() {
 				<ExcelColumn label='phase' value='phase' />
 				<ExcelColumn label='score' value='score' />
 				<ExcelColumn label='teamId' value='teamId' />
+				<ExcelColumn label='parameter 1' value='param1' />
+				<ExcelColumn label='parameter 2' value='param2' />
+				<ExcelColumn label='parameter 3' value='param3' />
+				<ExcelColumn label='parameter 4' value='param4' />
+				<ExcelColumn label='parameter 5' value='param5' />
+				<ExcelColumn label='parameter 6' value='param6' />
 			</ExcelSheet>
 			<ExcelSheet data={architect} name='Automation of Vehicle Fitness Check'>
 				<ExcelColumn label='Group' value='group' />
@@ -75,6 +81,12 @@ export default function ExportToXLS() {
 				<ExcelColumn label='phase' value='phase' />
 				<ExcelColumn label='score' value='score' />
 				<ExcelColumn label='teamId' value='teamId' />
+				<ExcelColumn label='parameter 1' value='param1' />
+				<ExcelColumn label='parameter 2' value='param2' />
+				<ExcelColumn label='parameter 3' value='param3' />
+				<ExcelColumn label='parameter 4' value='param4' />
+				<ExcelColumn label='parameter 5' value='param5' />
+				<ExcelColumn label='parameter 6' value='param6' />
 			</ExcelSheet>
 			<ExcelSheet data={coding} name='Unsupervised Test'>
 				<ExcelColumn label='Group' value='group' />
@@ -83,6 +95,12 @@ export default function ExportToXLS() {
 				<ExcelColumn label='phase' value='phase' />
 				<ExcelColumn label='score' value='score' />
 				<ExcelColumn label='teamId' value='teamId' />
+				<ExcelColumn label='parameter 1' value='param1' />
+				<ExcelColumn label='parameter 2' value='param2' />
+				<ExcelColumn label='parameter 3' value='param3' />
+				<ExcelColumn label='parameter 4' value='param4' />
+				<ExcelColumn label='parameter 5' value='param5' />
+				<ExcelColumn label='parameter 6' value='param6' />
 			</ExcelSheet>
 			<ExcelSheet data={final} name='Document Upload Tool'>
 				<ExcelColumn label='Group' value='group' />
@@ -91,6 +109,12 @@ export default function ExportToXLS() {
 				<ExcelColumn label='phase' value='phase' />
 				<ExcelColumn label='score' value='score' />
 				<ExcelColumn label='teamId' value='teamId' />
+				<ExcelColumn label='parameter 1' value='param1' />
+				<ExcelColumn label='parameter 2' value='param2' />
+				<ExcelColumn label='parameter 3' value='param3' />
+				<ExcelColumn label='parameter 4' value='param4' />
+				<ExcelColumn label='parameter 5' value='param5' />
+				<ExcelColumn label='parameter 6' value='param6' />
 			</ExcelSheet>
 			<ExcelSheet data={grand} name='Seed Certification'>
 				<ExcelColumn label='Group' value='group' />
@@ -99,6 +123,12 @@ export default function ExportToXLS() {
 				<ExcelColumn label='phase' value='phase' />
 				<ExcelColumn label='score' value='score' />
 				<ExcelColumn label='teamId' value='teamId' />
+				<ExcelColumn label='parameter 1' value='param1' />
+				<ExcelColumn label='parameter 2' value='param2' />
+				<ExcelColumn label='parameter 3' value='param3' />
+				<ExcelColumn label='parameter 4' value='param4' />
+				<ExcelColumn label='parameter 5' value='param5' />
+				<ExcelColumn label='parameter 6' value='param6' />
 			</ExcelSheet>
 		</ExcelFile>
 	)

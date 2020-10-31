@@ -6,9 +6,9 @@ import Phases from './components/phases/Phases'
 import { auth } from './components/firebase'
 import HeaderLogos from './components/HeaderLogos'
 import TeamAssessment from './components/TeamAssessment'
-import './App.css'
 import InputTeam from './components/InputTeam'
-import ResultPage from './components/resultpage';
+import './App.css'
+
 function App() {
 	const [user, setUser] = useState(null)
 	const [juryName, setJuryName] = useState(null)
@@ -44,13 +44,10 @@ function App() {
 						<InputTeam jury={user} />
 						{/* <InputTeam jury={{ name: 'JOHN THE JURY' }} /> */}
 						<Route path='/phases/:phase/assessment/:teamId'>
-							<TeamAssessment jury={user} juryName={juryName} />
+							<TeamAssessment jury={user} />
 						</Route>
 					</Route>
 				</Switch>
-				<Route path="/results">
-					{user&&<ResultPage/>}
-				</Route>
 			</Router>
 		</>
 	)
